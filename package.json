@@ -1,7 +1,7 @@
 {
-  "name": "cassidoo-172",
+  "name": "cassidoo",
   "version": "1.0.0",
-  "description": "Cassidoo Week 172",
+  "description": "Cassidoo Newsletter Solutions",
   "private": true,
   "main": "index.js",
   "scripts": {

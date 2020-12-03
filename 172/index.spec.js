@@ -29,12 +29,22 @@ describe('arrayDiff', () => {
     expect(arrayDiff([], 0)).toBe(0);
   });
 
-  it('should compute diff', () => {
+  it('should compute diff in array with unique values', () => {
     expect(arrayDiff([1, 2, 3, 4], 1)).toBe(3);
     expect(arrayDiff([1, 2, 3, 4], -1)).toBe(3);
     expect(arrayDiff([1, 2, 3, 4], 2)).toBe(2);
     expect(arrayDiff([1, 2, 3, 4], -2)).toBe(2);
     expect(arrayDiff([1, 2, 3, 4], 3)).toBe(1);
     expect(arrayDiff([1, 2, 3], 2)).toBe(1);
+    expect(arrayDiff([2, 4, 6], 2)).toBe(2);
+    expect(arrayDiff([6, 4, 2], 2)).toBe(2);
+  });
+
+  it('should compute diff in array with duplications', () => {
+    expect(arrayDiff([1, 2, 3, 1], 1)).toBe(3);
+    expect(arrayDiff([1, 2, 2], 1)).toBe(2);
+    expect(arrayDiff([1, 1, 2], 1)).toBe(2);
+    expect(arrayDiff([6, 4, 2, 6], 2)).toBe(3);
+    expect(arrayDiff([6, 4, 2, 6, 4, 2], 2)).toBe(8);
   });
 });

@@ -35,25 +35,29 @@
  */
 module.exports = function arrayDiff(array, diff) {
   const size = array.length;
-  if (size <= 1) {
+  if (size === 0) {
     return 0;
   }
 
+  const map = new Map();
+  for (let i = 0; i < size; ++i) {
+    const value = array[i];
+    if (!map.has(value)) {
+      map.set(value, 0);
+    }
+
+    map.set(value, map.get(value) + 1);
+  }
+
+
   let nb = 0;
 
-  const mid = size / 2;
-  for (let i = 0; i <= mid; ++i) {
-    const v1 = array[i];
-    for (let j = i + 1; j < size; ++j) {
-      const v2 = array[j];
-      const d1 = v1 - v2;
-      const d2 = v2 - v1;
-      if (d1 === diff) {
-        nb++;
-      }
-      if (d2 === diff) {
-        nb++;
-      }
+  for (const entries of map.entries()) {
+    const value = entries[0];
+    const occ = entries[1];
+    const lookingFor = diff + value;
+    if (map.has(lookingFor)) {
+      nb += occ * map.get(lookingFor);
     }
   }
 
