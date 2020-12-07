@@ -22,44 +22,42 @@
  * THE SOFTWARE.
  */
 
-/**
- * Given an array of integers and a target value, return the number of pairs of array elements that have a difference equal to a target value.
- *
- *
- * Examples:
- *   arrayDiff([1, 2, 3, 4], 1)
- *   3 // 2 - 1 = 1, 3 - 2 = 1, and 4 - 3 = 1
- *
- * @param {*} array 
- * @param {*} diff 
- */
-module.exports = function arrayDiff(array, diff) {
-  const size = array.length;
-  if (size === 0) {
-    return 0;
-  }
+const stringMultiply = require('./index');
 
-  const map = new Map();
-  for (let i = 0; i < size; ++i) {
-    const value = array[i];
-    if (!map.has(value)) {
-      map.set(value, 0);
-    }
+describe('stringMultiply', () => {
+  it('should compute 123 * 0', () => {
+    expect(stringMultiply('123', '0')).toBe('0');
+  });
 
-    map.set(value, map.get(value) + 1);
-  }
+  it('should compute 0 * 456', () => {
+    expect(stringMultiply('0', '456')).toBe('0');
+  });
 
+  it('should compute 1 * 45', () => {
+    expect(stringMultiply('1', '45')).toBe('45');
+  });
 
-  let nb = 0;
+  it('should compute 123 * 1', () => {
+    expect(stringMultiply('123', '1')).toBe('123');
+  });
 
-  for (const entries of map.entries()) {
-    const value = entries[0];
-    const occ = entries[1];
-    const lookingFor = diff + value;
-    if (map.has(lookingFor)) {
-      nb += occ * map.get(lookingFor);
-    }
-  }
+  it('should compute 123 * 45', () => {
+    expect(stringMultiply('123', '45')).toBe('5535');
+  });
 
-  return nb;
-}
+  it('should compute 123 * 456', () => {
+    expect(stringMultiply('123', '456')).toBe('56088');
+  });
+
+  it('should compute 123456 * 123456', () => {
+    expect(stringMultiply('123456', '123456')).toBe('15241383936');
+  });
+
+  it('should compute 987654 * 45', () => {
+    expect(stringMultiply('987654', '45')).toBe('44444430');
+  });
+
+  it('should compute 987654 * 456', () => {
+    expect(stringMultiply('987654', '456')).toBe('450370224');
+  });
+});
