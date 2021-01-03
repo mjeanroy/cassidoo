@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-const stringMultiply = require('./index');
+const {stringMultiply} = require('./index');
 
 describe('stringMultiply', () => {
   it('should compute 123 * 0', () => {

@@ -22,17 +22,22 @@
  * THE SOFTWARE.
  */
 
-//
-// Given a list of folders in a filesystem and the name of a folder to remove, return the new list of folders after removal.
-//
-//
-// Examples:
-// $ removeFolder([“/a”,”/a/b”,”/c/d”,”/c/d/e”,”/c/f”, “/c/f/g”], ‘c’)
-// $ [“/a”,”/a/b”]
-// $ removeFolder([“/a”,”/a/b”,”/c/d”,”/c/d/e”,”/c/f”, “/c/f/g”], ‘d’) $ [“/a”,”/a/b”,”/c”,”/c/f”, “/c/f/g”]
-//
-
-module.exports = function removeFolder(folders, toRemove) {
+/**
+ * Given a list of folders in a filesystem and the name of a folder to remove, return the new list of folders after removal.
+ *
+ * Examples:
+ *
+ * ```
+ * $ removeFolder([“/a”,”/a/b”,”/c/d”,”/c/d/e”,”/c/f”, “/c/f/g”], ‘c’)
+ * $ [“/a”,”/a/b”]
+ * $ removeFolder([“/a”,”/a/b”,”/c/d”,”/c/d/e”,”/c/f”, “/c/f/g”], ‘d’) $ [“/a”,”/a/b”,”/c”,”/c/f”, “/c/f/g”]
+ * ```
+ *
+ * @param {Array<string>} folders List of folders.
+ * @param {string} toRemove The folder to remove.
+ * @return {Array<string>} The truncated folders.
+ */
+function removeFolder(folders, toRemove) {
   const results = new Set();
 
   for (let i = 0; i < folders.length; ++i) {
@@ -45,6 +50,23 @@ module.exports = function removeFolder(folders, toRemove) {
   return Array.from(results);
 }
 
+/**
+ * Truncate folder, by removing the appropriate sub-folder.
+ *
+ * For example:
+ *
+ * ```
+ * truncate('/a/b/c/d', 'e') => '/a/b/c/d'
+ * truncate('/a/b/c/d', 'd') => '/a/b/c'
+ * truncate('/a/b/c/d', 'c') => '/a/b'
+ * truncate('/a/b/c/d', 'b') => '/a'
+ * truncate('/a/b/c/d', 'a') => '/'
+ * ```
+ *
+ * @param {string} folder The folder.
+ * @param {string} toRemove The folder to remove.
+ * @return {string} The truncated folder.
+ */
 function truncate(folder, toRemove) {
   const parts = folder.split('/');
   const results = [];
@@ -57,5 +79,13 @@ function truncate(folder, toRemove) {
     results.push(part);
   }
 
+  if (results.length === 0) {
+    return '/';
+  }
+
   return results.join('/');
 }
+
+module.exports = {
+  removeFolder,
+};

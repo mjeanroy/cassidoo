@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "env": {
+    "es2020": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "max-len": [2, 200, 2]
+  }
+}

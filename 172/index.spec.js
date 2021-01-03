@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-const arrayDiff = require('./index');
+const {arrayDiff} = require('./index');
 
 describe('arrayDiff', () => {
   it('should compute diff with empty array', () => {

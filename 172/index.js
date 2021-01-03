@@ -23,17 +23,18 @@
  */
 
 /**
- * Given an array of integers and a target value, return the number of pairs of array elements that have a difference equal to a target value.
- *
+ * Given an array of integers and a target value, return the number of pairs of array elements that
+ * have a difference equal to a target value.
  *
  * Examples:
  *   arrayDiff([1, 2, 3, 4], 1)
  *   3 // 2 - 1 = 1, 3 - 2 = 1, and 4 - 3 = 1
  *
- * @param {*} array 
- * @param {*} diff 
+ * @param {number[]} array The input.
+ * @param {number} diff The diff to look for.
+ * @return {number} The number of pairs of array elements that have a difference equal to a target value.
  */
-module.exports = function arrayDiff(array, diff) {
+function arrayDiff(array, diff) {
   const size = array.length;
   if (size === 0) {
     return 0;
@@ -63,3 +64,7 @@ module.exports = function arrayDiff(array, diff) {
 
   return nb;
 }
+
+module.exports = {
+  arrayDiff,
+};

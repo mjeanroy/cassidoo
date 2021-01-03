@@ -22,10 +22,9 @@
  * THE SOFTWARE.
  */
 
-const removeFolder = require('./index');
+const {removeFolder} = require('./index');
 
 describe('removeFolder', () => {
-
   it('should remove folder from given list', () => {
     expect(removeFolder(['/a', '/a/b', '/c/d', '/c/d/e', '/c/f', '/c/f/g'], 'c')).toEqual(['/a', '/a/b']);
     expect(removeFolder(['/a', '/a/b', '/c/d', '/c/d/e', '/c/f', '/c/f/g'], 'd')).toEqual(['/a', '/a/b', '/c', '/c/f', '/c/f/g']);
